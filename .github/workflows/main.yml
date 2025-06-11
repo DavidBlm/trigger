@@ -11,10 +11,7 @@ jobs:
         with:
           fetch-depth: 1
       - name: Script
-        env:
-          SCRIPT: |
-            echo "HALLO"
-        run: docker exec build-container bash -c "$SCRIPT"
+        run:    echo "HALLO"
       - name: Run downstream workflow
         run: gh workflow run $WORKFLOW_FILE --repo ${GITHUB_REPOSITORY}
         env:
