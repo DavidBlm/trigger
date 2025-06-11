@@ -1,0 +1,21 @@
+name: CNNArch2Caffe2
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  masterJobLinux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Script
+        env:
+          SCRIPT: |
+            echo "HALLO"
+        run: docker exec build-container bash -c "$SCRIPT"
+      - name: Run downstream workflow
+        run: gh workflow run $WORKFLOW_FILE --repo ${GITHUB_REPOSITORY}
+        env:
+          WORKFLOW_FILE: main2.yaml      
