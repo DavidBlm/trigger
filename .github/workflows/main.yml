@@ -17,4 +17,4 @@ jobs:
       - name: Run downstream workflow
         run: gh workflow run $WORKFLOW_FILE --repo ${GITHUB_REPOSITORY}
         env:
-          WORKFLOW_FILE: main2.yaml      
+          WORKFLOW_FILE: main2.yml      
