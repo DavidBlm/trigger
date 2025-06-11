@@ -1,0 +1,14 @@
+name: triggered
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  masterJobLinux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Script
+        run: echo "HALLO"
