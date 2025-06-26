@@ -16,7 +16,7 @@ jobs:
   fourth:
     runs-on: ubuntu-latest
     steps:
-      - run: exit 1
+      - run: exit 0
   windows_phase:
     needs: [second, fourth]
     if: ${{ !cancelled()}}
