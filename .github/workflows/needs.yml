@@ -31,12 +31,12 @@ jobs:
           if: ${{contains(needs.*.result, 'failure')}}
   third:
     runs-on: ubuntu-latest
-    if: ${{ !cancelled() }} # && !contains(needs.*.result, 'skipped') }}
+    if: ${{ !cancelled()  && !contains(needs.windows_phase.result, 'skipped') }}
     needs: windows_phase
     steps:
      - name: Echo all job results
        run: |
-        for result in ${{ needs.*.result }}; do
+        for result in ${{ needs.windows_phase.result }}; do
           echo "$result"
         done
      - run: echo "abc"
