@@ -17,8 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: exit 1
+  runs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0
   windows_phase:
-    needs: [second, fourth]
+    needs: [second, fourth, runs]
     if: ${{ !cancelled()}}
     runs-on: ubuntu-latest
     steps:
