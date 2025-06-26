@@ -13,8 +13,13 @@ jobs:
     needs: first
     steps:
       - run: echo "abc"
+  fourth:
+    runs-on: ubuntu-latest
+    needs: first
+    steps:
+      - run: exit 1
   windows_phase:
-    needs: [second]
+    needs: [second, fourth]
     if: ${{ !cancelled()}}
     runs-on: ubuntu-latest
     steps:
