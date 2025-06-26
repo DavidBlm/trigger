@@ -34,6 +34,10 @@ jobs:
     if: ${{ !cancelled() }} # && !contains(needs.*.result, 'skipped') }}
     needs: windows_phase
     steps:
-      - run: echo ${{ needs.*.result }}
-      - run: echo "abc"
+     - name: Echo all job results
+       run: |
+        for result in ${{ needs.*.result }}; do
+          echo "$result"
+        done
+     - run: echo "abc"
     
