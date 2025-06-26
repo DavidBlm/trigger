@@ -24,7 +24,9 @@ jobs:
     steps:
         - run: |
             echo "Finished stage windows"
-            echo ${{!contains(needs.*.result, 'failure')}}
+            echo ${{contains(needs.*.result, 'failure')}}
+            echo ${{contains(needs.*.result, 'skipped')}}
+            echo ${{!contains(needs.*.result, 'success')}}
           if: ${{!contains(needs.*.result, 'failure')}}
         - run: |
             echo "Failed stage windows"
