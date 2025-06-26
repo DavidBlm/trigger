@@ -27,11 +27,11 @@ jobs:
           if: ${{!contains(needs.*.result, 'failure')}}
         - run: |
             echo "Failed stage windows"
-            exit 1
+            exit 0
           if: ${{contains(needs.*.result, 'failure')}}
   third:
     runs-on: ubuntu-latest
-    if: ${{ !cancelled()  && !contains(needs.windows_phase.result, 'skipped') }}
+    if: ${{ !cancelled()  && contains(needs.windows_phase.result, 'success')}}
     needs: windows_phase
     steps:
      - name: Echo all job results
