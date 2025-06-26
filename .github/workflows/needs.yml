@@ -30,6 +30,9 @@ jobs:
           if: ${{!contains(needs.*.result, 'failure')}}
         - run: |
             echo "Failed stage windows"
+            echo ${{contains(needs.*.result, 'failure')}}
+            echo ${{contains(needs.*.result, 'skipped')}}
+            echo ${{!contains(needs.*.result, 'success')}}
             exit 1
           if: ${{contains(needs.*.result, 'failure')}}
   third:
