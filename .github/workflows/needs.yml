@@ -15,7 +15,6 @@ jobs:
       - run: echo "abc"
   fourth:
     runs-on: ubuntu-latest
-    needs: first
     steps:
       - run: exit 1
   windows_phase:
