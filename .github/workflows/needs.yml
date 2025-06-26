@@ -13,3 +13,21 @@ jobs:
     needs: first
     steps:
       - run: echo "abc"
+  windows_phase:
+    needs: [second]
+    if: ${{ !cancelled()}}
+    runs-on: ubuntu-latest
+    steps:
+        - run: |
+            echo "Finished stage windows"
+          if: ${{!contains(needs.*.result, 'failure')}}
+        - run: |
+            echo "Failed stage windows"
+            exit 1
+          if: ${{contains(needs.*.result, 'failure')}}
+  third:
+    runs-on: ubuntu-latest
+    needs: windows_phase
+    steps:
+      - run: echo "abc"
+    
