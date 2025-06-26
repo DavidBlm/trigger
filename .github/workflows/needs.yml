@@ -1,0 +1,15 @@
+name: test
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    if: ${{github.ref_name == "main"}}
+    steps:
+      - run: echo "abc"
+  second:
+    runs-on: ubuntu-latest
+    needs: first
+    steps:
+      - run: echo "abc"
