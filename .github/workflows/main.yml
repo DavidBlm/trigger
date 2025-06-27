@@ -5,16 +5,20 @@ on:
 env:
     GH_TOKEN: ${{ github.token }}
 jobs:
-  masterJobLinux:
+   trigger-coopautopilot:
     runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+    timeout-minutes: 120
     steps:
       - name: Checkout latest commit
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Script
-        run:    echo "HALLO"
-      - name: Run downstream workflow
-        run: gh workflow run $WORKFLOW_FILE --repo ${GITHUB_REPOSITORY}
+      - name: Trigger CoopMontiSimAutopilot pipeline
+        run: gh workflow run $WORKFLOW_FILE --repo $REPO  --ref $BRANCH
         env:
-          WORKFLOW_FILE: main2.yml      
+          WORKFLOW_FILE: main2.yml
+          BRANCH: ${{ github.ref_name }}
+          REPO: ${{github.repository}}
+          GH_TOKEN: ${{github.token}}
