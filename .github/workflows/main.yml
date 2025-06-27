@@ -7,8 +7,6 @@ env:
 jobs:
    trigger-coopautopilot:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
     timeout-minutes: 120
     steps:
       - name: Checkout latest commit
