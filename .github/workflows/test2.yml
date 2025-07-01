@@ -46,7 +46,7 @@ jobs:
       - run: echo "abc"
   fifth:
     needs: [third, sixt]
-    if: ${{needs.third.result}} == "sucessful" && ${{ !cancelled()}} && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'skipped')
+    if: ${{ !cancelled() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'skipped')}}
     runs-on: ubuntu-latest
     steps:
       - run: echo "${{needs.sixt.result}}"
