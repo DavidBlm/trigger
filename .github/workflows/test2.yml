@@ -49,4 +49,4 @@ jobs:
     if: ${{needs.third.result}} == "sucessful" && ${{ !cancelled()}} && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'skipped')
     runs-on: ubuntu-latest
     steps:
-      - run: echo "abc"
+      - run: echo "${{needs.sixt.result}}"
