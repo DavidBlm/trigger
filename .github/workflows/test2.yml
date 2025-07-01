@@ -40,7 +40,7 @@ jobs:
       - run: echo "abc"
   fifth:
     needs: third
-    if: ${{needs.third.result == "sucessful"}}
+    if: ${{needs.third.result}} == "sucessful"
     runs-on: ubuntu-latest
     steps:
       - run: echo "abc"
