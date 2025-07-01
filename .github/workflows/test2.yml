@@ -31,3 +31,14 @@ jobs:
     needs: windows_phase
     steps:
       - run: echo "abc"
+  fourth:
+    needs: third
+    if: ${{ !cancelled()}}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "abc"
+  fifth:
+    needs: third
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "abc"
