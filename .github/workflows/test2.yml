@@ -32,6 +32,12 @@ jobs:
     needs: windows_phase
     steps:
       - run: echo "abc"
+  sixt:
+    if: ${{ !cancelled()}}
+    runs-on: ubuntu-latest
+    needs: windows_phase
+    steps:
+      - run: exit 1
   fourth:
     needs: third
     if: ${{ !cancelled()}}
@@ -39,7 +45,7 @@ jobs:
     steps:
       - run: echo "abc"
   fifth:
-    needs: third
+    needs: [third, sixt]
     if: ${{needs.third.result}} == "sucessful" && ${{ !cancelled()}} && contains(needs.*.result, 'sucessful')
     runs-on: ubuntu-latest
     steps:
