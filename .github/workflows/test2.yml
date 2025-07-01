@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: windows_phase
     steps:
-      - run: exit 1
+      - run: exit 0
   fourth:
     needs: third
     if: ${{ !cancelled()}}
