@@ -26,6 +26,7 @@ jobs:
             exit 1
           if: ${{contains(needs.*.result, 'failure')}}
   third:
+    if: ${{ !cancelled()}}
     runs-on: ubuntu-latest
     needs: windows_phase
     steps:
